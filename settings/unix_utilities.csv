@@ -8,9 +8,11 @@ chmod -R,change mode recurse
 chmod,change mode
 chown -R,change owner recurse
 chown,change owner
+code
 cp,cop
 curl
 cut
+d,drum
 df -h,disk free human
 df,disk free
 dig
@@ -29,16 +31,20 @@ id,I D
 less
 ln -s,link soft
 ln,link
+ls,lisa
+ls -al,lisa long
 man
 md5sum,M D five sum
 mkcd,make katie
 mkdir,make dear
 mkfifo,make fifo
+mktemp,make temp
 mv,move
 paste
 printf,print f
 pwd,work dear
 rev,reverse
+rg,rig
 rsync,are sync
 scp,S copy
 sed,said
