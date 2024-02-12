@@ -10,9 +10,11 @@ chown -R,change owner recurse
 chown,change owner
 code
 cp,cop
+copyq,copy q
 curl
 cut
 d,drum
+date
 df -h,disk free human
 df,disk free
 dig
@@ -64,6 +66,7 @@ tail
 tar
 tee -a,tea append
 tee,tea
+tmux,tux
 touch
 tr -d,translate delete
 tr,translate
