@@ -48,4 +48,6 @@ list six:
 
 link:
     "[]()"
+    # VSCode does better with this short sleep.
+    sleep(50ms)
     key(left:3)

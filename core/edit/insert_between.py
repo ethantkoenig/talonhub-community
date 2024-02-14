@@ -7,7 +7,11 @@ mod = Module()
 class module_actions:
     def insert_between(before: str, after: str):
         """Insert `before + after`, leaving cursor between `before` and `after`. Not entirely reliable if `after` contains newlines."""
-        actions.insert(before + after)
+        # VSCode does better with these short sleeps.
+        actions.insert(before)
+        actions.sleep("10ms")
+        actions.insert(after)
+        actions.sleep("50ms")
         for _ in after:
             actions.edit.left()
 
