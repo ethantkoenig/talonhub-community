@@ -1,4 +1,5 @@
 Replacement,Original
+I,i
 January,january
 February,february
 April,april
@@ -9,7 +10,13 @@ September,september
 October,october
 November,november
 December,december
-vim,vin
+Sunday,sunday
+Monday,monday
+Tuesday,tuesday
+Wednesday,wednesday
+Thursday,thursday
+Friday,friday
+Saturday,saturday
 Jose,jose
 Spanner,spanner
 CL,cl
@@ -19,6 +26,7 @@ Gaia,gaia
 see,se
 Narasimman,Norseman
 OAuth,oauth
+OAuth,oot
 doc,dock
 rollback-safe,rollback safe
 presubmit,pre submit
@@ -26,3 +34,8 @@ OhmConnect,om connect
 OhmConnect,oh connect
 Elena,elena
 Cadir,kadir
+Ethan,ethan
+Renew Home,renew home
+Renew Home,renewed home
+Renew Home's,renew homes
+Google,google
