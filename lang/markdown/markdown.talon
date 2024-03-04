@@ -42,8 +42,8 @@ list six:
     "```{markdown_code_block_language}"
     sleep(50ms)
     key(enter:2)
-    # VSCode auto inserts the closing backticks
-    # "```"
+    "```"
+    sleep(50ms)
     key(up)
 
 link:
