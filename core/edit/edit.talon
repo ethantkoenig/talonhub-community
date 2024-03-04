@@ -48,6 +48,9 @@ pasty: edit.paste()
 clone that: edit.selection_clone()
 clone line: edit.line_clone()
 
+# Insert new line
+slap: edit.line_insert_down()
+
 # Undo/redo
 undo that: edit.undo()
 redo that: edit.redo()
