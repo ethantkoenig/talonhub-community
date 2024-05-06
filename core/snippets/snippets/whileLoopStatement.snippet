@@ -1,6 +1,11 @@
 name: whileLoopStatement
 phrase: while
 insertionScope: statement
+
+$1.wrapperPhrase: while cond
+$1.wrapperScope: statement
+$0.wrapperPhrase: while
+$0.wrapperScope: statement
 ---
 
 language: javascript | java
@@ -14,4 +19,11 @@ language: python
 -
 while $1:
     $0
+---
+
+language: shellscript
+-
+while $1; do
+  $0
+done
 ---
