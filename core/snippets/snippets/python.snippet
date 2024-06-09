@@ -52,3 +52,36 @@ insertionScope: statement
 -
 $0 for $1 in $2
 ---
+
+name: withStatement
+phrase: with
+insertionScope: statement
+
+$1.wrapperPhrase: with
+$1.wrapperScope: statement
+-
+with $0:
+    $1
+---
+
+name: asyncWithStatement
+phrase: async with
+insertionScope: statement
+
+$1.wrapperPhrase: async with
+$1.wrapperScope: statement
+-
+async with $0:
+    $1
+---
+
+name: asyncFunctionDeclaration
+phrase: async funk
+insertionScope: statement
+
+$0.wrapperPhrase: async funk
+$0.wrapperScope: statement
+-
+async def $1($2):
+    $0
+---
