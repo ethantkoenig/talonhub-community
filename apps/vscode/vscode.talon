@@ -4,7 +4,9 @@ app: vscode
 settings():
     key_wait = 4.0
 tag(): user.find_and_replace
-tag(): user.line_commands
+# BEGIN ethantkoenig EDIT
+# tag(): user.line_commands
+# END ethantkoenig EDIT
 tag(): user.multiple_cursors
 tag(): user.splits
 tag(): user.tabs
