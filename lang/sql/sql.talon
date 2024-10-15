@@ -28,6 +28,9 @@ column:
     key(return)
     ", "
 
-count: user.code_insert_function("Count", "")
+# BEGIN ethantkoenig EDIT
+# Interferes with custom "select count star" command
+# count: user.code_insert_function("Count", "")
+# END ethantkoenig EDIT
 
 date: user.insert_between("DATE '", "'")
