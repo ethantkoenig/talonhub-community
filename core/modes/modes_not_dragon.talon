@@ -40,6 +40,6 @@ not speech.engine: dragon
 #     user.help_hide()
 #     user.mouse_sleep()
 #     speech.disable()
-^talon wake from sleep$: speech.enable()
+^talon wake (up | from sleep)$: speech.enable()
 ^talon sleep$: speech.disable()
 # END ethantkoenig EDIT

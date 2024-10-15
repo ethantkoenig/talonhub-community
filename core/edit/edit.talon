@@ -13,7 +13,9 @@ zoom reset: edit.zoom_reset()
 
 # Searching
 find it: edit.find()
-next one: edit.find_next()
+# BEGIN ethantkoenig EDIT
+# next one: edit.find_next()
+# END ethantkoenig EDIT
 
 # Navigation
 
