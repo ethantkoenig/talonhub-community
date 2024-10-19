@@ -2,6 +2,10 @@
 # Note: I have removed many of the commands from the upstream file, because Cursorless makes them unnecessary.
 # END ethantkoenig EDIT
 
+# Compound of action(select, clear, copy, cut, paste, etc.) and modifier(word, line, etc.) commands for editing text.
+# eg: "select line", "clear all"
+<user.edit_action> <user.edit_modifier>: user.edit_command(edit_action, edit_modifier)
+
 # Zoom
 zoom in: edit.zoom_in()
 zoom out: edit.zoom_out()
@@ -17,8 +21,11 @@ next one: edit.find_next()
 scroll up: edit.page_up()
 scroll down: edit.page_down()
 
-go word left: edit.word_left()
-go word right: edit.word_right()
+# go left, go left left down, go 5 left 2 down
+# go word left, go 2 words right
+# BEGIN ethantkoenig EDIT
+# go <user.navigation_step>+: user.perform_navigation_steps(navigation_step_list)
+# END ethantkoenig EDIT
 
 go line start | head: edit.line_start()
 go line end | tail: edit.line_end()
@@ -27,20 +34,13 @@ go top: edit.file_start()
 go bottom: edit.file_end()
 
 # Selecting
-select all: edit.select_all()
 
 # BEGIN ethantkoenig EDIT
-# select line: edit.select_line()
-# select line start: user.select_line_start()
-# select line end: user.select_line_end()
-# select block: edit.select_paragraph()
-
 # select left: edit.extend_left()
 # select right: edit.extend_right()
 # select up: edit.extend_line_up()
 # select down: edit.extend_line_down()
 
-# select word: edit.select_word()
 # select word left: edit.extend_word_left()
 # select word right: edit.extend_word_right()
 
@@ -54,11 +54,6 @@ select all: edit.select_all()
 # (indent less | out dent): edit.indent_less()
 
 # # Delete
-clear all: user.delete_all()
-# clear line: edit.delete_line()
-# clear line start: user.delete_line_start()
-# clear line end: user.delete_line_end()
-# clear block: edit.delete_paragraph()
 # clear left: edit.delete()
 # clear right: user.delete_right()
 
@@ -69,8 +64,6 @@ clear all: user.delete_all()
 # clear down:
 #     edit.extend_line_down()
 #     edit.delete()
-
-# clear word: edit.delete_word()
 
 # clear word left:
 #     edit.extend_word_left()
@@ -99,13 +92,7 @@ clear all: user.delete_all()
 
 # Copy
 copy that: edit.copy()
-copy all: user.copy_all()
 # BEGIN ethantkoenig EDIT
-# copy line: user.copy_line()
-# copy line start: user.copy_line_start()
-# copy line end: user.copy_line_end()
-# copy block: user.copy_paragraph()
-# copy word: user.copy_word()
 # copy word left: user.copy_word_left()
 # copy word right: user.copy_word_right()
 
@@ -126,13 +113,7 @@ copy all: user.copy_all()
 
 # Cut
 cut that: edit.cut()
-cut all: user.cut_all()
 # BEGIN ethantkoenig EDIT
-# cut line: user.cut_line()
-# cut line start: user.cut_line_start()
-# cut line end: user.cut_line_end()
-# cut block: user.cut_paragraph()
-# cut word: user.cut_word()
 # cut word left: user.cut_word_left()
 # cut word right: user.cut_word_right()
 
@@ -152,19 +133,14 @@ cut all: user.cut_all()
 # END ethantkoenig EDIT
 
 # Paste
+# BEGIN ethantkoenig EDIT
+# (pace | paste) that: edit.paste()
 pasty: edit.paste()
+# END ethantkoenig EDIT
 (pace | paste) enter:
     edit.paste()
     key(enter)
-# BEGIN ethantkoenig EDIT
-# paste match: edit.paste_match_style()
-# (pace | paste) [to] all: user.paste_all()
-# (pace | paste) [to] line: user.paste_line()
-# (pace | paste) [to] line start: user.paste_line_start()
-# (pace | paste) [to] line end: user.paste_line_end()
-# (pace | paste) [to] block: user.paste_paragraph()
-# (pace | paste) [to] word: user.paste_word()
-# END ethantkoenig EDIT
+paste match: edit.paste_match_style()
 
 # Duplication
 clone that: edit.selection_clone()
