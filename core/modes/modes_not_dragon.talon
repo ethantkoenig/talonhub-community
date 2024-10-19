@@ -1,5 +1,6 @@
+mode: command
+mode: dictation
 mode: sleep
-not mode: sleep
 not speech.engine: dragon
 -
 # BEGIN ethantkoenig EDIT
