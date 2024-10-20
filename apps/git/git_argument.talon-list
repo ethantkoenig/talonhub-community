@@ -71,4 +71,6 @@ upstream
 # origin master: origin/master
 origin slash main: origin/main
 origin slash master: origin/master
+upstream slash main: upstream/main
+upstream slash master: upstream/master
 # END ethantkoenig EDIT
