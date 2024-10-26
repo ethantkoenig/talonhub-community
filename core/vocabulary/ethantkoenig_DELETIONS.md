@@ -1,0 +1,1 @@
+- `vocabulary.talon-list`: The list is provided by a file outside of this repository (as of October 2024, in `~/.talon/user/lists/`).
