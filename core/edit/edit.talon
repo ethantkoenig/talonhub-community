@@ -91,8 +91,9 @@ go bottom: edit.file_end()
 # END ethantkoenig EDIT
 
 # Copy
-copy that: edit.copy()
 # BEGIN ethantkoenig EDIT
+# copy that: edit.copy()
+copy that | copper: edit.copy()
 # copy word left: user.copy_word_left()
 # copy word right: user.copy_word_right()
 
