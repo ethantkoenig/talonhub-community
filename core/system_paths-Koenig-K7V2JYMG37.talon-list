@@ -1,0 +1,16 @@
+list: user.system_paths
+hostname: Koenig-K7V2JYMG37
+-
+user: /Users/ethan.koenig
+desktop: /Users/ethan.koenig/Desktop
+desk: /Users/ethan.koenig/Desktop
+documents: /Users/ethan.koenig/Documents
+docks: /Users/ethan.koenig/Documents
+downloads: /Users/ethan.koenig/Downloads
+music: /Users/ethan.koenig/Music
+pictures: /Users/ethan.koenig/Pictures
+videos: /Users/ethan.koenig/Videos
+talon home: /Users/ethan.koenig/.talon
+talon recordings: /Users/ethan.koenig/.talon/recordings
+talon user: /Users/ethan.koenig/.talon/user
+home: /Users/ethan.koenig
