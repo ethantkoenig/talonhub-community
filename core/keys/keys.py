@@ -1,6 +1,19 @@
 from talon import Context, Module, actions, app
 
+from .symbols import (
+    dragon_punctuation_dict,
+    punctuation_dict,
+    symbol_key_dict,
+)
+
 mod = Module()
+ctx = Context()
+
+ctx_dragon = Context()
+ctx_dragon.matches = r"""
+speech.engine: dragon
+"""
+
 mod.list("letter", desc="The spoken phonetic alphabet")
 mod.list("symbol_key", desc="All symbols from the keyboard")
 mod.list("arrow_key", desc="All arrow keys")
@@ -103,132 +116,13 @@ def letters(m) -> str:
     return "".join(m.letter_list)
 
 
-ctx = Context()
+@mod.action_class
+class Actions:
+    def get_punctuation_words():
+        """Gets the user.punctuation list"""
+        return punctuation_dict
 
-# `punctuation_words` is for words you want available BOTH in dictation and as key names in command mode.
-# `symbol_key_words` is for key names that should be available in command mode, but NOT during dictation.
-punctuation_words = {
-    # TODO: I'm not sure why we need these, I think it has something to do with
-    # Dragon. Possibly it has been fixed by later improvements to talon? -rntz
-    "`": "`",
-    ",": ",",  # <== these things
-    "back tick": "`",
-    "comma": ",",
-    # Workaround for issue with conformer b-series; see #946
-    "coma": ",",
-    "period": ".",
-    "full stop": ".",
-    "semicolon": ";",
-    # BEGIN ethantkoenig EDIT
-    "semi": ";",
-    # END ethantkoenig EDIT
-    "colon": ":",
-    "forward slash": "/",
-    "question mark": "?",
-    "exclamation mark": "!",
-    "exclamation point": "!",
-    "asterisk": "*",
-    "hash sign": "#",
-    "number sign": "#",
-    "percent sign": "%",
-    "at sign": "@",
-    "and sign": "&",
-    "ampersand": "&",
-    # Currencies
-    "dollar sign": "$",
-    # BEGIN ethantkoenig EDIT
-    # "pound sign": "£",
-    # END ethantkoenig EDIT
-    "hyphen": "-",
-    "L paren": "(",
-    "left paren": "(",
-    "R paren": ")",
-    "right paren": ")",
-    # BEGIN ethantkoenig EDIT
-    "spa": " ",
-    # END ethantkoenig EDIT
-}
-symbol_key_words = {
-    # BEGIN ethantkoenig EDIT
-    "ski": "`",
-    # END ethantkoenig EDIT
-    "dot": ".",
-    "point": ".",
-    "quote": "'",
-    # BEGIN ethantkoenig EDIT
-    "twin": "'",
-    # END ethantkoenig EDIT
-    "question": "?",
-    "apostrophe": "'",
-    "L square": "[",
-    "left square": "[",
-    "brack": "[",
-    "bracket": "[",
-    "left bracket": "[",
-    "square": "[",
-    "R square": "]",
-    "right square": "]",
-    "r brack": "]",
-    "r bracket": "]",
-    "right bracket": "]",
-    # BEGIN ethantkoenig EDIT
-    "box": "]",
-    # END ethantkoenig EDIT
-    "slash": "/",
-    "backslash": "\\",
-    "minus": "-",
-    "dash": "-",
-    "equals": "=",
-    "plus": "+",
-    "grave": "`",
-    "tilde": "~",
-    "bang": "!",
-    "down score": "_",
-    "underscore": "_",
-    "paren": "(",
-    # BEGIN ethantkoenig EDIT
-    "round": ")",
-    # END ethantkoenig EDIT
-    "brace": "{",
-    "left brace": "{",
-    "curly bracket": "{",
-    "left curly bracket": "{",
-    "r brace": "}",
-    "right brace": "}",
-    "r curly bracket": "}",
-    "right curly bracket": "}",
-    # BEGIN ethantkoenig EDIT
-    "curly": "}",
-    # END ethantkoenig EDIT
-    "angle": "<",
-    "left angle": "<",
-    "less than": "<",
-    "rangle": ">",
-    "R angle": ">",
-    "right angle": ">",
-    # BEGIN ethantkoenig EDIT
-    "diamond": ">",
-    # END ethantkoenig EDIT
-    "greater than": ">",
-    "star": "*",
-    "hash": "#",
-    "percent": "%",
-    "caret": "^",
-    "amper": "&",
-    "pipe": "|",
-    "dub quote": '"',
-    "double quote": '"',
-    # BEGIN ethantkoenig EDIT
-    "quad": '"',
-    # END ethantkoenig EDIT
-    # Currencies
-    "dollar": "$",
-    # BEGIN ethantkoenig EDIT
-    # "pound": "£",
-    # END ethantkoenig EDIT
-}
 
-# make punctuation words also included in {user.symbol_keys}
-symbol_key_words.update(punctuation_words)
-ctx.lists["self.punctuation"] = punctuation_words
-ctx.lists["self.symbol_key"] = symbol_key_words
+ctx.lists["user.punctuation"] = punctuation_dict
+ctx.lists["user.symbol_key"] = symbol_key_dict
+ctx_dragon.lists["user.punctuation"] = dragon_punctuation_dict

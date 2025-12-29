@@ -32,25 +32,6 @@ ctx_dragon.matches = r"""
 speech.engine: dragon
 """
 
-# Maps spoken forms to DictationFormat method names (see DictationFormat below).
-ctx.lists["user.prose_modifiers"] = {
-    "cap": "cap",
-    "no cap": "no_cap",
-    "no caps": "no_cap",  # "no caps" variant for Dragon
-    "no space": "no_space",
-}
-ctx.lists["user.prose_snippets"] = {
-    "spacebar": " ",
-    "new line": "\n",
-    "new paragraph": "\n\n",
-    # Curly quotes are used to obtain proper spacing for left and right quotes, but will later be straightened.
-    "open quote": "“",
-    "close quote": "”",
-    "smiley": ":-)",
-    "winky": ";-)",
-    "frowny": ":-(",
-}
-
 ctx.lists["user.hours_twelve"] = get_spoken_form_under_one_hundred(
     1,
     12,
@@ -139,14 +120,28 @@ def word(m) -> str:
         )
 
 
-@mod.capture(rule="({user.vocabulary} | <phrase>)+")
+@mod.capture(rule="({user.vocabulary} | <user.prose_contact> | <phrase>)+")
 def text(m) -> str:
     """A sequence of words, including user-defined vocabulary."""
     return format_phrase(m)
 
 
 @mod.capture(
-    rule="({user.vocabulary} | {user.punctuation} | {user.prose_snippets} | <user.prose_currency> | <user.prose_time> | <user.number_prose_prefixed> | <user.prose_percent> | <user.prose_modifier> | <user.abbreviation> | <phrase>)+"
+    rule=(
+        "("
+        "{user.vocabulary}"
+        "| {user.punctuation}"
+        "| {user.prose_snippets}"
+        "| <user.prose_currency>"
+        "| <user.prose_time>"
+        "| <user.number_prose_prefixed>"
+        "| <user.prose_percent>"
+        "| <user.prose_modifier>"
+        "| <user.abbreviation>"
+        "| <user.prose_contact>"
+        "| <phrase>"
+        ")+"
+    )
 )
 def prose(m) -> str:
     """Mixed words and punctuation, auto-spaced & capitalized."""
@@ -155,14 +150,27 @@ def prose(m) -> str:
 
 
 @mod.capture(
-    rule="({user.vocabulary} | {user.punctuation} | {user.prose_snippets} | <user.prose_currency> | <user.prose_time> | <user.number_prose_prefixed> | <user.prose_percent> | <user.abbreviation> | <phrase>)+"
+    rule=(
+        "("
+        "{user.vocabulary}"
+        "| {user.punctuation}"
+        "| {user.prose_snippets}"
+        "| <user.prose_currency>"
+        "| <user.prose_time>"
+        "| <user.number_prose_prefixed>"
+        "| <user.prose_percent>"
+        "| <user.abbreviation>"
+        "| <user.prose_contact>"
+        "| <phrase>"
+        ")+"
+    )
 )
 def raw_prose(m) -> str:
     """Mixed words and punctuation, auto-spaced & capitalized, without quote straightening and commands (for use in dictation mode)."""
     return apply_formatting(m)
 
 
-# For dragon, omit support for abbreviations
+# For dragon, omit support for abbreviations and contacts
 @ctx_dragon.capture("user.text", rule="({user.vocabulary} | <phrase>)+")
 def text_dragon(m) -> str:
     """A sequence of words, including user-defined vocabulary."""

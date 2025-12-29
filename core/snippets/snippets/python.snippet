@@ -1,6 +1,20 @@
 language: python
 ---
 
+name: talonModuleDeclaration
+phrase: module
+insertionScope: statement
+-
+mod = Module()
+---
+
+name: talonContextDeclaration
+phrase: context
+insertionScope: statement
+-
+ctx = Context()
+---
+
 name: talonAppDeclaration
 phrase: module app
 insertionScope: statement
@@ -46,13 +60,44 @@ class $2Actions:
     $0
 ---
 
-name: comprehension
-phrase: comprehend
+# BEGIN ethantkoenig EDIT
+# name: suppressError
+# phrase: suppress error
+# -
+# with suppress(AttributeError):
+#     $0
+# ---
+# END ethantkoenig EDIT
+
+name: listComprehension
+phrase: list comp
 insertionScope: statement
 -
-$0 for $1 in $2
+[$2 for $2 in $1 if $0]
 ---
 
+name: setComprehension
+phrase: set comp
+insertionScope: statement
+-
+{$0 for $0 in $1}
+---
+
+name: dictComprehension
+phrase: dict comp
+insertionScope: statement
+-
+{$0: $2 for $2 in $1}
+---
+
+name: generatorExpression
+phrase: gen comp
+insertionScope: statement
+-
+($2 for $2 in $1 if $0)
+---
+
+# BEGIN ethantkoenig EDIT
 name: withStatement
 phrase: with
 insertionScope: statement
@@ -85,3 +130,4 @@ $0.wrapperScope: statement
 async def $1($2):
     $0
 ---
+# END ethantkoenig EDIT
