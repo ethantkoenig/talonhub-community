@@ -2,7 +2,7 @@ tag: terminal
 -
 # tags should be activated for each specific terminal in the respective talon file
 
-lisa: user.terminal_list_directories()
+lisa [dir] [<user.text>]: user.terminal_list_directories(text or "")
 lisa all: user.terminal_list_all_directories()
 # BEGIN MODIFICATION
 # Remove "katie" commands because they are redefined in non-community files.
